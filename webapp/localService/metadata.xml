@@ -1,0 +1,24 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZCONTENT_SRV" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="header" sap:content-version="1">
+				<Key><PropertyRef Name="Id"/></Key><Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Sales Document" sap:updatable="false"/><Property Name="Text" Type="Edm.String" MaxLength="100" sap:unicode="false" sap:label="Character 100" sap:sortable="false"
+					sap:filterable="false"/><NavigationProperty Name="toItems" Relationship="ZCONTENT_SRV.HeaderToItems" FromRole="FromRole_HeaderToItems" ToRole="ToRole_HeaderToItems"/></EntityType>
+			<EntityType Name="item" sap:content-version="1">
+				<Key><PropertyRef Name="ParentId"/><PropertyRef Name="Id"/></Key><Property Name="ParentId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Sales Document"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Item"/><Property Name="Text" Type="Edm.String" MaxLength="100" sap:unicode="false" sap:label="Character 100" sap:filterable="false"/></EntityType>
+			<Association Name="HeaderToItems" sap:content-version="1"><End Type="ZCONTENT_SRV.header" Multiplicity="1" Role="FromRole_HeaderToItems"/><End Type="ZCONTENT_SRV.item" Multiplicity="*" Role="ToRole_HeaderToItems"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_HeaderToItems"><PropertyRef Name="Id"/></Principal>
+					<Dependent Role="ToRole_HeaderToItems"><PropertyRef Name="ParentId"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="ZCONTENT_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="headerSet" EntityType="ZCONTENT_SRV.header" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:content-version="1"/><EntitySet Name="itemSet" EntityType="ZCONTENT_SRV.item" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:content-version="1"/>
+				<AssociationSet Name="HeaderToItemsSet" Association="ZCONTENT_SRV.HeaderToItems" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="headerSet" Role="FromRole_HeaderToItems"/><End EntitySet="itemSet" Role="ToRole_HeaderToItems"/></AssociationSet>
+			</EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZCONTENT_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZCONTENT_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

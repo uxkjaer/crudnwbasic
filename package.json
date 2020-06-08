@@ -1,0 +1,20 @@
+{
+  "name": "CRUD_GWBASIC",
+  "version": "0.0.1",
+  "description": "",
+  "devDependencies": {
+    "@ui5/cli": "^2.2.6",
+    "ui5-middleware-livereload": "*",
+    "ui5-middleware-simpleproxy": "*"
+  },
+  "scripts": {
+    "build": "ui5 build --clean-dest --include-task=generateManifestBundle generateCachebusterInfo"
+  },
+  "ui5": {
+    "dependencies": [
+      "ui5-middleware-simpleproxy",
+      "ui5-middleware-livereload"
+    ]
+  },
+  "private": "true"
+}
